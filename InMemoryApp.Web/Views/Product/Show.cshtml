@@ -1,9 +1,13 @@
-﻿@{
+﻿@using InMemoryApp.Web.Entities
+@{
     ViewData["Title"] = "Product Show";
+
+    Product product = ViewBag.product as Product;
 }
 
 <h1>Product Show Page</h1>
 <p>Cached Time: @ViewBag.time</p>
 <p>Reason to delete: @ViewBag.callback</p>
+<h1>@product.Id => @product.Name => @product.Price</h1>
 
 <a href="/Product/Index">Go to Index Page</a>
