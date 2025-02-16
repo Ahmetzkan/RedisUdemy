@@ -1,0 +1,10 @@
+﻿@using IDistributedCacheRedisApp.Web.Entities
+
+@{
+    ViewData["Title"] = "Show";
+    Product product = ViewBag.product as Product;
+}
+
+<h1>Show</h1>
+<h2>@product.Name</h2>
+<p>Price: @product.Price</p>
