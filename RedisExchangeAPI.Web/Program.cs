@@ -1,9 +1,13 @@
+using RedisExchangeAPI.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddStackExchangeRedisCache(options =>
-    options.Configuration = "localhost:6379"
-);
+builder.Services.AddSingleton<RedisService>();
+builder.Services.AddControllersWithViews();
+
+
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -19,8 +23,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+var redisService = app.Services.GetRequiredService<RedisService>();
+redisService.Connect();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Product}/{action=Index}/{id?}");
+    pattern: "{controller=HashType}/{action=Index}/{id?}");
 
 app.Run();
